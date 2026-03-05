@@ -137,12 +137,11 @@ Start((Debut)) --> CN{Connexion ?}
     Nav --> DF{Document trouvé ?}
     DF --OUI & Utilisateur Connecté--> CE{Choix Emprunt} 
     DF --NON & Utilisateur connecté--> CC
-    DF --NON & Utilisateur non connecté--> CN
     CE --IRL--> EP[Emprunt Physique]
     CE --NON--> CC
     EP --> PE{Penalité de retard en cours ?}
     PE --OUI--> B[Action Bloquée] --> CC
-    PE --NON & IRL--> DE[Debut emprunt] --> CC
+    DE[Debut emprunt] --> CC
     PE --Non & ONLINE--> DEL{Option Livraison}
     DEL --OUI--> DELOK[livraison Validé] --> DE
     DEL --NON--> DE
