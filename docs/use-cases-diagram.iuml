@@ -1,0 +1,53 @@
+@startuml
+left to right direction
+
+together {
+	actor "Visiteurs" as A.Visiteurs
+	actor "Adhérents standards" as A.Adhérents.Standards
+	actor "Adhérents offre Premium" as A.Adhérents.Offre.Premium
+	actor "Bibliothécaires" as A.Bibliothécaires
+}
+
+ 
+A.Adhérents.Standards <|- A.Adhérents.Offre.Premium
+A.Adhérents.Standards -|> A.Visiteurs
+
+Rectangle "Omnilib"{
+usecase "Naviguer" as U.Naviguer
+usecase "Rechercher" as U.Rechercher
+
+usecase "Emprunter livres physiques" as U.Emprunter.Livres.Physiques
+usecase "Télécharger E.books" as U.Télécherger.E.books
+usecase "Payer offre Premimum" as U.Payer.Offre.premium
+usecase "louer VOD avec liseuse" as U.Louer.VOD
+usecase "Réserver Livres physiques" as U.Réserver.Livres.Physiques
+usecase "Commande payée livrée à domicile" as U.Livrer.A.domicile
+usecase "Mettre à jour catalogue" as U.Mettre.A.jour.Catalogue
+usecase "Valider retour des livres au guichet" as U.Valider.Retour.Livres.Guichet 
+}
+
+
+together {
+	actor "Transporteur" as A.Transporteur
+	actor "Etablissement bancaire" as A.Etablissement.Bancaire
+}
+
+
+A.Visiteurs -- U.Naviguer
+A.Visiteurs -- U.Rechercher
+A.Adhérents.Standards --  U.Emprunter.Livres.Physiques
+A.Adhérents.Standards - U.Réserver.Livres.Physiques
+A.Adhérents.Standards -- U.Payer.Offre.premium
+A.Adhérents.Offre.Premium -- U.Télécherger.E.books
+A.Adhérents.Offre.Premium -- U.Louer.VOD
+A.Bibliothécaires -- U.Mettre.A.jour.Catalogue  
+A.Bibliothécaires -- U.Valider.Retour.Livres.Guichet 
+U.Livrer.A.domicile --A.Transporteur
+U.Payer.Offre.premium --- A.Etablissement.Bancaire
+U.Livrer.A.domicile -- A.Etablissement.Bancaire
+
+
+U.Valider.Retour.Livres.Guichet .> U.Emprunter.Livres.Physiques : << include >>
+
+ U.Livrer.A.domicile -.>  U.Réserver.Livres.Physiques: << extend >>
+
