@@ -51,3 +51,4 @@ U.Valider.Retour.Livres.Guichet .> U.Emprunter.Livres.Physiques : << include >>
 
  U.Livrer.A.domicile -.>  U.Réserver.Livres.Physiques: << extend >>
 
+@enduml
